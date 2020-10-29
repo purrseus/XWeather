@@ -6,10 +6,12 @@
         "root": ["./src"],
         "alias": {
           "src": "./src",
+          "api": "./src/api",
           "assets": "./src/assets",
           "components": "./src/components",
-          "screens": "./src/screens",
-          "navigators": "./src/navigators"
+          "navigators": "./src/navigators",
+          "providers": "./src/providers",
+          "screens": "./src/screens"
         }
       }
     ]

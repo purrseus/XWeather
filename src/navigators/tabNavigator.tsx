@@ -10,12 +10,30 @@ import TodayScreen from 'screens/TodayScreen';
 import HourlyScreen from 'screens/HourlyScreen';
 import DailyScreen from 'screens/DailyScreen';
 
-const Tab = createBottomTabNavigator();
+type Props = {
+  focused: boolean;
+  color?: string;
+  size?: number;
+};
+
+type TabParamList = {
+  Today: {
+    tabBarIcon: (props: Props) => React.ReactNode;
+  };
+  Hourly: {
+    tabBarIcon: (props: Props) => React.ReactNode;
+  };
+  Daily: {
+    tabBarIcon: (props: Props) => React.ReactNode;
+  };
+};
+
+const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator: FC = () => {
   return (
     <Tab.Navigator
-      screenOptions={{tabBarButton: props => <TouchableOpacity {...props} />}}
+      screenOptions={{ tabBarButton: props => <TouchableOpacity {...props} /> }}
       tabBarOptions={{
         labelStyle: {
           width: 100,
@@ -39,7 +57,9 @@ const TabNavigator: FC = () => {
         options={{
           tabBarIcon: ({ focused }) => {
             let icon = require('assets/icons/today.png');
-            if (focused) icon = require('assets/icons/today-active.png');
+            if (focused) {
+              icon = require('assets/icons/today-active.png');
+            }
             return <Image source={icon} style={{ width: 28, height: 28 }} />;
           },
         }}
@@ -50,7 +70,9 @@ const TabNavigator: FC = () => {
         options={{
           tabBarIcon: ({ focused }) => {
             let icon = require('assets/icons/hourly.png');
-            if (focused) icon = require('assets/icons/hourly-active.png');
+            if (focused) {
+              icon = require('assets/icons/hourly-active.png');
+            }
             return <Image source={icon} style={{ width: 24, height: 24 }} />;
           },
         }}
@@ -61,7 +83,9 @@ const TabNavigator: FC = () => {
         options={{
           tabBarIcon: ({ focused }) => {
             let icon = require('assets/icons/daily.png');
-            if (focused) icon = require('assets/icons/daily-active.png');
+            if (focused) {
+              icon = require('assets/icons/daily-active.png');
+            }
             return <Image source={icon} style={{ width: 23, height: 23 }} />;
           },
         }}
