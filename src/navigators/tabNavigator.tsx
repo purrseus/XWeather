@@ -3,55 +3,65 @@
  */
 
 import React, { FC } from 'react';
-import { Image, TouchableOpacity } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  BottomTabBarButtonProps,
+  BottomTabBarOptions,
+  BottomTabNavigationOptions,
+  createBottomTabNavigator,
+} from '@react-navigation/bottom-tabs';
 
 import TodayScreen from 'screens/TodayScreen';
 import HourlyScreen from 'screens/HourlyScreen';
 import DailyScreen from 'screens/DailyScreen';
 
-type Props = {
+interface Props {
   focused: boolean;
   color?: string;
   size?: number;
+}
+
+type tabBarIconType = {
+  tabBarIcon: (props: Props) => React.ReactNode;
 };
 
 type TabParamList = {
-  Today: {
-    tabBarIcon: (props: Props) => React.ReactNode;
-  };
-  Hourly: {
-    tabBarIcon: (props: Props) => React.ReactNode;
-  };
-  Daily: {
-    tabBarIcon: (props: Props) => React.ReactNode;
-  };
+  Today: tabBarIconType;
+  Hourly: tabBarIconType;
+  Daily: tabBarIconType;
 };
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
 const TabNavigator: FC = () => {
+  const screenOptions: BottomTabNavigationOptions = {
+    tabBarButton: (props: BottomTabBarButtonProps) => (
+      <TouchableOpacity {...props} />
+    ),
+  };
+
+  const tabBarOptions: BottomTabBarOptions = {
+    labelStyle: {
+      width: 100,
+      fontSize: 14,
+      marginBottom: 6,
+      fontWeight: 'bold',
+      marginTop: -6,
+    },
+    style: {
+      position: 'absolute',
+      borderTopWidth: 0,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+      height: 70,
+      backgroundColor: '#292b36',
+    },
+    activeTintColor: 'white',
+    inactiveTintColor: 'gray',
+  };
+
   return (
-    <Tab.Navigator
-      screenOptions={{ tabBarButton: props => <TouchableOpacity {...props} /> }}
-      tabBarOptions={{
-        labelStyle: {
-          width: 100,
-          fontSize: 14,
-          marginBottom: 6,
-          fontWeight: 'bold',
-          marginTop: -6,
-        },
-        style: {
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          height: 70,
-          backgroundColor: '#292b36',
-        },
-        activeTintColor: 'white',
-        inactiveTintColor: 'gray',
-      }}
-    >
+    <Tab.Navigator screenOptions={screenOptions} tabBarOptions={tabBarOptions}>
       <Tab.Screen
         name="Today"
         options={{
@@ -60,7 +70,7 @@ const TabNavigator: FC = () => {
             if (focused) {
               icon = require('assets/icons/today-active.png');
             }
-            return <Image source={icon} style={{ width: 28, height: 28 }} />;
+            return <Image source={icon} style={styles.today} />;
           },
         }}
         component={TodayScreen}
@@ -73,7 +83,7 @@ const TabNavigator: FC = () => {
             if (focused) {
               icon = require('assets/icons/hourly-active.png');
             }
-            return <Image source={icon} style={{ width: 24, height: 24 }} />;
+            return <Image source={icon} style={styles.hourly} />;
           },
         }}
         component={HourlyScreen}
@@ -86,7 +96,7 @@ const TabNavigator: FC = () => {
             if (focused) {
               icon = require('assets/icons/daily-active.png');
             }
-            return <Image source={icon} style={{ width: 23, height: 23 }} />;
+            return <Image source={icon} style={styles.daily} />;
           },
         }}
         component={DailyScreen}
@@ -94,5 +104,11 @@ const TabNavigator: FC = () => {
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  today: { width: 28, height: 28 },
+  hourly: { width: 24, height: 24 },
+  daily: { width: 23, height: 23 },
+});
 
 export default TabNavigator;

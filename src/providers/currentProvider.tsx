@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+/**
+ * @format
+ */
 
-type Props ={
-  children: JSX.Element,
-};
+import React, { FC, useState } from 'react';
+import { CurrentWeatherInterface } from 'api/interface';
+
+interface Props {
+  children: JSX.Element;
+}
 
 export const CurrentContext = React.createContext<null | any>(null);
 
-export const CurrentProvider = ({ children }: Props) => {
-  const [currentWeather, setCurrentWeather] = useState({});
+export const CurrentProvider: FC<Props> = ({ children }: Props) => {
+  const [currentWeather, setCurrentWeather] = useState<
+    CurrentWeatherInterface | {}
+  >({});
   return (
     <CurrentContext.Provider value={{ currentWeather, setCurrentWeather }}>
       {children}

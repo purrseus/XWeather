@@ -9,6 +9,7 @@
           "api": "./src/api",
           "assets": "./src/assets",
           "components": "./src/components",
+          "hooks": "./src/hooks",
           "navigators": "./src/navigators",
           "providers": "./src/providers",
           "screens": "./src/screens"

@@ -3,16 +3,16 @@
  */
 
 import React from 'react';
-import { Image, TouchableWithoutFeedback } from 'react-native';
+import { Image, TouchableWithoutFeedback, View } from 'react-native';
+import styles from './styles';
 
 const MenuBtn = () => {
   return (
-    <TouchableWithoutFeedback>
-      <Image
-        source={require('assets/icons/menu.png')}
-        style={{ width: 30, height: 30 }}
-      />
-    </TouchableWithoutFeedback>
+    <View style={styles.container}>
+      <TouchableWithoutFeedback>
+        <Image source={require('assets/icons/menu.png')} style={styles.image} />
+      </TouchableWithoutFeedback>
+    </View>
   );
 };
 
