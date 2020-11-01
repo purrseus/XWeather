@@ -12,31 +12,32 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
     justifyContent: 'center',
-    paddingBottom: 300,
+    marginBottom: 80,
   },
   name: {
     textAlign: 'center',
     fontSize: 25,
     fontWeight: 'bold',
   },
-  image: {
-    width: 100,
-    height: 100,
-    alignSelf: 'center',
-  },
   temp: {
     textAlign: 'center',
     fontSize: 50,
-    marginBottom: 20,
+    marginTop: 30,
+  },
+  image: {
+    width: 120,
+    height: 120,
+    alignSelf: 'center',
   },
   description: {
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 22,
   },
   feelsLike: {
     textAlign: 'center',
     marginTop: 10,
     fontWeight: '700',
+    fontSize: 16,
   },
 });
 

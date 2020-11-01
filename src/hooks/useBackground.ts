@@ -12,15 +12,15 @@ const useBackground = () => {
   if (!currentWeather.name) {
     return background;
   }
-  const coldDay = ['13d'];
-  const coldNight = ['13n'];
-  const clearDay = ['01d', '02d'];
-  const clearNight = ['01n', '02n'];
-  const mistDay = ['50d', '03d', '04d'];
-  const mistNight = ['50n', '03n', '04n'];
-  const rain = ['09d', '09n', '10d', '10n', '11d', '11n'];
+  const coldDay: string[] = ['13d'];
+  const coldNight: string[] = ['13n'];
+  const clearDay: string[] = ['01d', '02d'];
+  const clearNight: string[] = ['01n', '02n'];
+  const mistDay: string[] = ['50d', '03d', '04d'];
+  const mistNight: string[] = ['50n', '03n', '04n'];
+  const rain: string[] = ['09d', '09n', '10d', '10n', '11d', '11n'];
 
-  const icon = currentWeather.weather[0].icon;
+  const icon: string = currentWeather.weather[0].icon;
   if (
     (new Date().getHours() < 18 && currentWeather.main.temp <= 20) ||
     coldDay.includes(icon)

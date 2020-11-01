@@ -16,13 +16,13 @@ const Today: FC<CurrentWeatherInterface> = (props: CurrentWeatherInterface) => {
           <Text style={[styles.name, styles.color]}>
             {name}, {sys.country}
           </Text>
+          <Text style={[styles.temp, styles.color]}>{main.temp}°C</Text>
           <Image
             source={{
               uri: `http://openweathermap.org/img/wn/${weather[0].icon}@4x.png`,
             }}
             style={styles.image}
           />
-          <Text style={[styles.temp, styles.color]}>{main.temp}°C</Text>
           <Text style={[styles.description, styles.color]}>
             {weather[0].description}
           </Text>

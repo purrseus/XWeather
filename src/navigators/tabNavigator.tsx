@@ -66,9 +66,9 @@ const TabNavigator: FC = () => {
         name="Today"
         options={{
           tabBarIcon: ({ focused }) => {
-            let icon = require('assets/icons/today.png');
+            let icon = require('assets/icons/tab/today.png');
             if (focused) {
-              icon = require('assets/icons/today-active.png');
+              icon = require('assets/icons/tab/today-active.png');
             }
             return <Image source={icon} style={styles.today} />;
           },
@@ -79,9 +79,9 @@ const TabNavigator: FC = () => {
         name="Hourly"
         options={{
           tabBarIcon: ({ focused }) => {
-            let icon = require('assets/icons/hourly.png');
+            let icon = require('assets/icons/tab/hourly.png');
             if (focused) {
-              icon = require('assets/icons/hourly-active.png');
+              icon = require('assets/icons/tab/hourly-active.png');
             }
             return <Image source={icon} style={styles.hourly} />;
           },
@@ -92,9 +92,9 @@ const TabNavigator: FC = () => {
         name="Daily"
         options={{
           tabBarIcon: ({ focused }) => {
-            let icon = require('assets/icons/daily.png');
+            let icon = require('assets/icons/tab/daily.png');
             if (focused) {
-              icon = require('assets/icons/daily-active.png');
+              icon = require('assets/icons/tab/daily-active.png');
             }
             return <Image source={icon} style={styles.daily} />;
           },
