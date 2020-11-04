@@ -36,7 +36,7 @@ const Tab = createBottomTabNavigator<TabParamList>();
 const TabNavigator: FC = () => {
   const screenOptions: BottomTabNavigationOptions = {
     tabBarButton: (props: BottomTabBarButtonProps) => (
-      <TouchableOpacity {...props} />
+      <TouchableOpacity activeOpacity={0.6} {...props} />
     ),
   };
 

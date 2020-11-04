@@ -14,7 +14,7 @@ export interface CurrentWeatherInterface {
     lon: number;
     lat: number;
   };
-  weather: Array<Weather>;
+  weather: Weather[];
   base: string;
   main: {
     temp: number;
@@ -44,4 +44,57 @@ export interface CurrentWeatherInterface {
   id: number;
   name: string;
   cod: number;
+}
+
+interface Main {
+  temp: number;
+  feels_like: number;
+  temp_min: number;
+  temp_max: number;
+  pressure: number;
+  sea_level: number;
+  grnd_level: number;
+  humidity: number;
+  temp_kf: number;
+}
+
+export interface HourlyInterface {
+  dt: string;
+  main: Main;
+  weather: Weather[];
+  clouds: {
+    all: number;
+  };
+  wind: {
+    speed: number;
+    deg: number;
+  };
+  visibility: number;
+  pop: number;
+  sys: {
+    pod: string;
+  };
+  dt_txt: string;
+}
+
+interface City {
+  id: number;
+  name: string;
+  coords: {
+    lat: number;
+    lon: number;
+  };
+  country: string;
+  population: number;
+  timezone: number;
+  sunrise: number;
+  sunset: number;
+}
+
+export interface ForecastInterface {
+  cod: string;
+  message: number;
+  cnt: number;
+  list: HourlyInterface[];
+  city: City;
 }

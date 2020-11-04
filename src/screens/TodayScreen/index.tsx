@@ -10,60 +10,63 @@ import {
   View,
 } from 'react-native';
 
-import { CurrentContext } from 'providers/currentProvider';
-import useHandle from './handle';
 import styles from './styles';
 import useBackground from 'hooks/useBackground';
+import useForecast, { HookReturn } from 'hooks/useForecast';
 
 import MenuBtn from 'components/MenuBtn';
 import Today from 'components/Today/main';
 import CurrentCondition from 'components/Today/currentCondition';
+import { ForecastContext } from 'providers/forecastProvider';
 
 const TodayScreen: FC = () => {
-  const { refreshing, netInfo, getCurrentWeather } = useHandle();
-  const { currentWeather } = useContext(CurrentContext);
+  const { refreshing, netInfo, getWeatherForecast }: HookReturn = useForecast();
+  const { weatherForecast } = useContext(ForecastContext);
   const background = useBackground();
 
   useEffect(() => {
-    getCurrentWeather();
-  }, [getCurrentWeather]);
+    getWeatherForecast();
+  }, [getWeatherForecast]);
 
   return (
     <ImageBackground source={background} style={styles.background}>
       <MenuBtn />
       <ScrollView
+        style={styles.scroll}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
-            onRefresh={getCurrentWeather}
+            onRefresh={getWeatherForecast}
           />
         }
       >
-        <Today {...currentWeather} />
-        {!!currentWeather.name && (
+        <Today {...weatherForecast} />
+        {!!weatherForecast.cod && (
           <View style={styles.curConditions}>
             <CurrentCondition
               name="Humidity"
               icon={require('assets/icons/common/humidity.png')}
-              data={`${currentWeather.main.humidity}%`}
+              data={`${weatherForecast.list[1].main.humidity}%`}
             />
 
             <CurrentCondition
               name="Wind speed"
               icon={require('assets/icons/common/wind.png')}
-              data={`${currentWeather.wind.speed * 3.6}km/h`}
+              data={`${(weatherForecast.list[1].wind.speed * 3.6).toFixed(
+                1
+              )}km/h`}
             />
 
             <CurrentCondition
               name="Cloudiness"
               icon={require('assets/icons/common/cloud.png')}
-              data={`${currentWeather.clouds.all}%`}
+              data={`${weatherForecast.list[1].clouds.all}%`}
             />
 
             <CurrentCondition
               name="Pressure"
               icon={require('assets/icons/common/pressure.png')}
-              data={`${currentWeather.main.pressure}hPa`}
+              data={`${weatherForecast.list[1].main.pressure}hPa`}
             />
           </View>
         )}

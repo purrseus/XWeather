@@ -2,11 +2,11 @@
  * @format
  */
 
-import React from 'react';
+import React, { FC } from 'react';
 import { Image, TouchableWithoutFeedback, View } from 'react-native';
 import styles from './styles';
 
-const MenuBtn = () => {
+const MenuBtn: FC = () => {
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback>

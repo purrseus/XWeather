@@ -3,13 +3,13 @@
  */
 
 import { useContext } from 'react';
-import { CurrentContext } from 'providers/currentProvider';
+import { ForecastContext } from 'providers/forecastProvider';
 
-const useBackground = () => {
-  const { currentWeather } = useContext(CurrentContext);
+const useBackground: () => any = () => {
+  const { weatherForecast } = useContext(ForecastContext);
   let background = require('assets/images/warm.jpg');
 
-  if (!currentWeather.name) {
+  if (!weatherForecast.cod) {
     return background;
   }
   const coldDay: string[] = ['13d'];
@@ -20,15 +20,15 @@ const useBackground = () => {
   const mistNight: string[] = ['50n', '03n', '04n'];
   const rain: string[] = ['09d', '09n', '10d', '10n', '11d', '11n'];
 
-  const icon: string = currentWeather.weather[0].icon;
+  const icon: string = weatherForecast.list[1].weather[0].icon;
   if (
-    (new Date().getHours() < 18 && currentWeather.main.temp <= 20) ||
+    (new Date().getHours() <= 18 && weatherForecast.list[1].main.temp <= 20) ||
     coldDay.includes(icon)
   ) {
     background = require('assets/images/cold-day.png');
   }
   if (
-    (new Date().getHours() >= 18 && currentWeather.main.temp <= 20) ||
+    (new Date().getHours() > 18 && weatherForecast.list[1].main.temp <= 20) ||
     coldNight.includes(icon)
   ) {
     background = require('assets/images/cold-night.jpg');

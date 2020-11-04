@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ffff',
     width: 170,
-    height: 80,
+    height: 85,
     margin: 8,
     padding: 8,
     borderRadius: 15,
@@ -17,8 +17,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    width: 30,
-    height: 30,
+    width: 33,
+    height: 33,
   },
   content: {
     width: '60%',
