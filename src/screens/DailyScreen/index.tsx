@@ -2,14 +2,43 @@
  * @format
  */
 
-import React, { FC } from 'react';
-import { View, Text } from 'react-native';
+import React, { FC, useEffect } from 'react';
+import { FlatList, ImageBackground, Text, View } from 'react-native';
+
+import styles from './styles';
+import useHandle, { HookReturn } from './handle';
+import Daily from 'components/Daily';
+import MenuBtn from 'components/MenuBtn';
+import useBackgroundIcon from 'hooks/useBackgroundIcon';
 
 const DailyScreen: FC = () => {
+  const { dailyWeather, netInfo, getDailyWeather }: HookReturn = useHandle();
+  const { background } = useBackgroundIcon();
+
+  useEffect(() => {
+    getDailyWeather();
+  }, [getDailyWeather]);
+
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Daily</Text>
-    </View>
+    <ImageBackground
+      source={background}
+      style={styles.background}
+      blurRadius={2}
+    >
+      <MenuBtn />
+
+      <View style={styles.container}>
+        <Text style={styles.title}>8 Days</Text>
+        {!!dailyWeather.length && (
+          <FlatList
+            style={styles.flatList}
+            data={dailyWeather}
+            renderItem={({ item }) => <Daily data={item} />}
+            keyExtractor={(item, index) => '' + index}
+          />
+        )}
+      </View>
+    </ImageBackground>
   );
 };
 

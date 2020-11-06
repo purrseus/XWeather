@@ -10,16 +10,16 @@ import styles from './styles';
 interface Props {
   name: string;
   icon: any;
-  data: string;
+  index: string;
 }
 
-const CurrentCondition: FC<Props> = ({ name, icon, data }: Props) => {
+const CurrentCondition: FC<Props> = ({ name, icon, index }) => {
   return (
     <TouchableOpacity activeOpacity={0.95} style={styles.container}>
       <Image source={icon} style={styles.icon} />
       <View style={styles.content}>
         <Text style={styles.name}>{name}</Text>
-        <Text>{data}</Text>
+        <Text>{index}</Text>
       </View>
     </TouchableOpacity>
   );

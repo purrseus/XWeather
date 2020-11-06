@@ -9,43 +9,6 @@ interface Weather {
   icon: string;
 }
 
-export interface CurrentWeatherInterface {
-  coords: {
-    lon: number;
-    lat: number;
-  };
-  weather: Weather[];
-  base: string;
-  main: {
-    temp: number;
-    feels_like: number;
-    temp_min: number;
-    temp_max: number;
-    pressure: number;
-    humidity: number;
-  };
-  visibility: number;
-  wind: {
-    speed: number;
-    deg: number;
-  };
-  clouds: {
-    all: number;
-  };
-  dt: number;
-  sys: {
-    type: number;
-    id: number;
-    country: string;
-    sunrise: number;
-    sunset: number;
-  };
-  timezone: number;
-  id: number;
-  name: string;
-  cod: number;
-}
-
 interface Main {
   temp: number;
   feels_like: number;
@@ -97,4 +60,38 @@ export interface ForecastInterface {
   cnt: number;
   list: HourlyInterface[];
   city: City;
+}
+///////////////////////////////////////
+interface Temp {
+  day: number;
+  min: number;
+  max: number;
+  night: number;
+  eve: number;
+  morn: number;
+}
+
+interface FeelsLike {
+  day: number;
+  night: number;
+  eve: number;
+  morn: number;
+}
+
+export interface DailyWeatherInterface {
+  dt: number;
+  sunrise: number;
+  sunset: number;
+  temp: Temp;
+  feels_like: FeelsLike;
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  wind_speed: number;
+  wind_deg: number;
+  weather: Weather[];
+  clouds: number;
+  pop: number;
+  rain?: number;
+  uvi: number;
 }

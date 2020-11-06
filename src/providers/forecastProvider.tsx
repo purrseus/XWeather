@@ -3,7 +3,7 @@
  */
 
 import React, { FC, useState } from 'react';
-import { ForecastInterface } from 'api/interface';
+import { ForecastInterface } from 'types/interface';
 
 interface Props {
   children: JSX.Element;

@@ -2,20 +2,19 @@
  * @format
  */
 
-import React, { FC, useContext, useEffect } from 'react';
+import React, { FC, useContext } from 'react';
 import {
   ImageBackground,
   RefreshControl,
-  ScrollView,
   SectionList,
   Text,
 } from 'react-native';
 import styles from './styles';
 
-import useBackground from 'hooks/useBackground';
+import useBackgroundIcon from 'hooks/useBackgroundIcon';
 import useForecast, { HookReturn } from 'hooks/useForecast';
 import { ForecastContext } from 'providers/forecastProvider';
-import { ForecastInterface } from 'api/interface';
+import { ForecastInterface } from 'types/interface';
 
 import MenuBtn from 'components/MenuBtn';
 import Hourly from 'components/Hourly';
@@ -28,7 +27,7 @@ interface Forecast {
 const HourlyScreen: FC = () => {
   const { weatherForecast }: Forecast = useContext(ForecastContext);
   const { refreshing, netInfo, getWeatherForecast }: HookReturn = useForecast();
-  const background = useBackground();
+  const { background } = useBackgroundIcon();
   const data = useSectionHourlyList(weatherForecast.list);
 
   return (
@@ -48,7 +47,7 @@ const HourlyScreen: FC = () => {
           />
         }
         sections={data}
-        keyExtractor={(item, index) => `${index}`}
+        keyExtractor={(item, index) => '' + index}
         renderItem={({ item }) => <Hourly item={item} />}
         renderSectionHeader={({ section: { title } }) => (
           <Text style={styles.titleSection}>{title}</Text>

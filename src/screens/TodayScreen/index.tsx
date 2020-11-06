@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import styles from './styles';
-import useBackground from 'hooks/useBackground';
+import useBackgroundIcon from 'hooks/useBackgroundIcon';
 import useForecast, { HookReturn } from 'hooks/useForecast';
 
 import MenuBtn from 'components/MenuBtn';
@@ -22,7 +22,7 @@ import { ForecastContext } from 'providers/forecastProvider';
 const TodayScreen: FC = () => {
   const { refreshing, netInfo, getWeatherForecast }: HookReturn = useForecast();
   const { weatherForecast } = useContext(ForecastContext);
-  const background = useBackground();
+  const { background } = useBackgroundIcon();
 
   useEffect(() => {
     getWeatherForecast();
@@ -46,13 +46,13 @@ const TodayScreen: FC = () => {
             <CurrentCondition
               name="Humidity"
               icon={require('assets/icons/common/humidity.png')}
-              data={`${weatherForecast.list[1].main.humidity}%`}
+              index={`${weatherForecast.list[1].main.humidity}%`}
             />
 
             <CurrentCondition
               name="Wind speed"
               icon={require('assets/icons/common/wind.png')}
-              data={`${(weatherForecast.list[1].wind.speed * 3.6).toFixed(
+              index={`${(weatherForecast.list[1].wind.speed * 3.6).toFixed(
                 1
               )}km/h`}
             />
@@ -60,13 +60,13 @@ const TodayScreen: FC = () => {
             <CurrentCondition
               name="Cloudiness"
               icon={require('assets/icons/common/cloud.png')}
-              data={`${weatherForecast.list[1].clouds.all}%`}
+              index={`${weatherForecast.list[1].clouds.all}%`}
             />
 
             <CurrentCondition
               name="Pressure"
               icon={require('assets/icons/common/pressure.png')}
-              data={`${weatherForecast.list[1].main.pressure}hPa`}
+              index={`${weatherForecast.list[1].main.pressure}hPa`}
             />
           </View>
         )}

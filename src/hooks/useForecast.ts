@@ -8,8 +8,8 @@ import { NetInfoState, useNetInfo } from '@react-native-community/netinfo';
 import Geolocation from '@react-native-community/geolocation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { ForecastInterface } from 'api/interface';
-import fetchWeather from 'api/fetchWeather';
+import { ForecastInterface } from 'types/interface';
+import { fetchWeather } from 'api/fetchWeather';
 import { ForecastContext } from 'providers/forecastProvider';
 
 interface Position {
@@ -50,11 +50,7 @@ const useForecast: CustomHook = () => {
                 JSON.stringify({ latitude, longitude })
               );
             }
-            const { data }: Response = await fetchWeather(
-              latitude,
-              longitude,
-              'forecast'
-            );
+            const { data }: Response = await fetchWeather(latitude, longitude);
             setWeatherForecast({ ...data });
             await AsyncStorage.mergeItem(
               '@location',
@@ -78,8 +74,7 @@ const useForecast: CustomHook = () => {
               const location: Position = JSON.parse(value);
               const { data }: Response = await fetchWeather(
                 location.latitude,
-                location.longitude,
-                'forecast'
+                location.longitude
               );
               setWeatherForecast({ ...data });
               setRefreshing(false);

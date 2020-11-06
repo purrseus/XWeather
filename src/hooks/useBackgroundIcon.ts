@@ -5,7 +5,7 @@
 import { useContext } from 'react';
 import { ForecastContext } from 'providers/forecastProvider';
 
-const useBackground: () => any = () => {
+const useBackgroundIcon: () => { background: any; icon: string } = () => {
   const { weatherForecast } = useContext(ForecastContext);
   let background = require('assets/images/warm.jpg');
 
@@ -20,19 +20,15 @@ const useBackground: () => any = () => {
   const mistNight: string[] = ['50n', '03n', '04n'];
   const rain: string[] = ['09d', '09n', '10d', '10n', '11d', '11n'];
 
-  const icon: string = weatherForecast.list[1].weather[0].icon;
-  if (
-    (new Date().getHours() <= 18 && weatherForecast.list[1].main.temp <= 20) ||
-    coldDay.includes(icon)
-  ) {
-    background = require('assets/images/cold-day.png');
+  const defaultIcon: string = weatherForecast.list[1].weather[0].icon.slice(
+    0,
+    2
+  );
+  let icon = defaultIcon + 'n';
+  if (new Date().getHours() >= 6 && new Date().getHours() < 18) {
+    icon = defaultIcon + 'd';
   }
-  if (
-    (new Date().getHours() > 18 && weatherForecast.list[1].main.temp <= 20) ||
-    coldNight.includes(icon)
-  ) {
-    background = require('assets/images/cold-night.jpg');
-  }
+
   if (clearDay.includes(icon)) {
     background = require('assets/images/clear.jpg');
   }
@@ -48,8 +44,20 @@ const useBackground: () => any = () => {
   if (rain.includes(icon)) {
     background = require('assets/images/rain-day.jpg');
   }
+  if (
+    (new Date().getHours() < 18 && weatherForecast.list[1].main.temp <= 20) ||
+    coldDay.includes(icon)
+  ) {
+    background = require('assets/images/cold-day.png');
+  }
+  if (
+    (new Date().getHours() > 18 && weatherForecast.list[1].main.temp <= 20) ||
+    coldNight.includes(icon)
+  ) {
+    background = require('assets/images/cold-night.jpg');
+  }
 
-  return background;
+  return { background, icon };
 };
 
-export default useBackground;
+export default useBackgroundIcon;

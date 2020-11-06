@@ -14,8 +14,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import TabNavigator from 'navigators/tabNavigator';
-
-import { CurrentProvider } from 'providers/currentProvider';
 import { ForecastProvider } from 'providers/forecastProvider';
 
 type StackParamsList = {
@@ -27,16 +25,14 @@ const RootStack = createStackNavigator<StackParamsList>();
 const App: FC = () => {
   return (
     <ForecastProvider>
-      <CurrentProvider>
-        <>
-          <StatusBar translucent backgroundColor="transparent" />
-          <NavigationContainer>
-            <RootStack.Navigator headerMode="none">
-              <RootStack.Screen name="Tab" component={TabNavigator} />
-            </RootStack.Navigator>
-          </NavigationContainer>
-        </>
-      </CurrentProvider>
+      <>
+        <StatusBar translucent backgroundColor="transparent" />
+        <NavigationContainer>
+          <RootStack.Navigator headerMode="none">
+            <RootStack.Screen name="Tab" component={TabNavigator} />
+          </RootStack.Navigator>
+        </NavigationContainer>
+      </>
     </ForecastProvider>
   );
 };

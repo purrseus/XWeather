@@ -5,22 +5,13 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  color: {
-    color: new Date().getHours() > 18 ? 'white' : 'black',
-    textShadowColor: new Date().getHours() < 18 ? 'transparent' : 'black',
-    textShadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    textShadowRadius: 1,
-  },
   container: {
     width: '100%',
     height: '100%',
     flex: 1,
     alignItems: 'stretch',
     justifyContent: 'center',
-    marginTop: 20,
+    marginTop: 45,
     marginBottom: 80,
   },
   name: {

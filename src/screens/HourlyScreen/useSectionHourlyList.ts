@@ -2,35 +2,44 @@
  * @format
  */
 
-import { HourlyInterface } from 'api/interface';
+import moment from 'moment';
+import { HourlyInterface } from 'types/interface';
 
 interface Result {
   title: string;
-  data?: HourlyInterface[];
+  data: HourlyInterface[];
 }
 
 // type CustomHook = (data: HourlyInterface[]) => Result[];
 
 const useSectionHourlyList = (data: HourlyInterface[]) => {
-  let newData = data.slice(3, 11);
-  const result: Result[] = [{ title: 'Today' }, { title: 'Tomorrow' }];
+  if (!data) {
+    return null;
+  }
 
-  const convertData = Array.from(
+  let newData: HourlyInterface[] = data.slice(2, 10);
+
+  const convertToDate: string[] = Array.from(
     new Set(
       newData.map(element => {
-        return element.dt_txt.slice(0, 11);
+        return element.dt_txt.slice(0, 10);
       })
     )
   );
 
-  const filterSections = convertData.map(element => {
-    return newData.filter(ele => {
-      return ele.dt_txt.includes(element);
-    });
-  });
-
-  result[0].data = filterSections[0];
-  result[1].data = filterSections[1];
+  const result = convertToDate.map(
+    (element: string): Result => {
+      return {
+        title:
+          moment(element).date() === new Date().getDate()
+            ? 'Today'
+            : 'Tomorrow',
+        data: newData.filter(ele => {
+          return ele.dt_txt.includes(element);
+        }),
+      };
+    }
+  );
 
   return result;
 };
