@@ -53,7 +53,7 @@ const CustomDrawerContent: FC<DrawerContentComponentProps<
       <DrawerItem
         style={styles.settings}
         icon={({ color, size }) => {
-          return <Icon color={color} size={size} name="cogs" />;
+          return <Icon color={color} size={size} name="cog" />;
         }}
         label="Settings"
         onPress={() => {

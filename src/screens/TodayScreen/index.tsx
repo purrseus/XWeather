@@ -9,6 +9,7 @@ import {
   ImageBackground,
   View,
 } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 
 import styles from './styles';
 import useBackgroundIcon from 'hooks/useBackgroundIcon';
@@ -26,6 +27,7 @@ const TodayScreen: FC = () => {
 
   useEffect(() => {
     getWeatherForecast();
+    SplashScreen.hide();
   }, [getWeatherForecast]);
 
   return (

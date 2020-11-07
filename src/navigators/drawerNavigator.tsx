@@ -15,7 +15,6 @@ type DrawerParamsList = {
 const Drawer = createDrawerNavigator<DrawerParamsList>();
 
 const DrawerNavigator: FC = () => {
-
   return (
     <Drawer.Navigator
       drawerType="slide"

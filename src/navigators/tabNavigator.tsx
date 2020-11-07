@@ -106,9 +106,9 @@ const TabNavigator: FC = () => {
 };
 
 const styles = StyleSheet.create({
-  today: { width: 28, height: 28 },
-  hourly: { width: 24, height: 24 },
-  daily: { width: 23, height: 23 },
+  today: { width: 32, height: 32 },
+  hourly: { width: 26, height: 26 },
+  daily: { width: 25, height: 25 },
 });
 
 export default TabNavigator;
