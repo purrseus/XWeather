@@ -2,7 +2,7 @@
  * @format
  */
 
-import { StyleSheet } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -11,8 +11,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingHorizontal: 10,
+    paddingTop: StatusBar.currentHeight || 0,
+  },
+  wrapper: {
+    padding: 10,
   },
   image: {
     width: 25,

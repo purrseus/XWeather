@@ -11,16 +11,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 20,
     borderRadius: 15,
-    padding: 20,
+    padding: 15,
   },
   content: {
     justifyContent: 'center',
   },
   date: {
-    width: 140,
-    fontSize: 15,
+    width: 150,
+    fontSize: 16,
   },
   description: {
+    fontSize: 15,
     textTransform: 'capitalize',
     color: '#888',
   },
@@ -30,8 +31,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   icon: {
-    width: 60,
-    height: 60,
+    width: 65,
+    height: 65,
   },
   tempMax: {
     width: 35,

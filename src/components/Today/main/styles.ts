@@ -5,6 +5,12 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  color: {
+    color:
+      new Date().getHours() >= 6 && new Date().getHours() < 18
+        ? 'black'
+        : 'white',
+  },
   container: {
     width: '100%',
     height: '100%',
@@ -21,8 +27,9 @@ const styles = StyleSheet.create({
   },
   temp: {
     textAlign: 'center',
-    fontSize: 50,
+    fontSize: 55,
     marginTop: 20,
+    letterSpacing: 1,
   },
   image: {
     width: 120,

@@ -14,11 +14,13 @@ const Today: FC<ForecastInterface> = ({ list, city }) => {
     <>
       {!!list && (
         <View style={styles.container}>
-          <Text style={styles.name}>
+          <Text style={[styles.name, styles.color]}>
             {city.name}, {city.country}
           </Text>
 
-          <Text style={styles.temp}>{list[1].main.temp.toFixed()}°C</Text>
+          <Text style={[styles.temp, styles.color]}>
+            {list[1].main.temp.toFixed()}°C
+          </Text>
 
           <Image
             source={{
@@ -27,11 +29,11 @@ const Today: FC<ForecastInterface> = ({ list, city }) => {
             style={styles.image}
           />
 
-          <Text style={styles.description}>
+          <Text style={[styles.description, styles.color]}>
             {list[1].weather[0].description}
           </Text>
 
-          <Text style={styles.feelsLike}>
+          <Text style={[styles.feelsLike, styles.color]}>
             Feels like {list[1].main.feels_like.toFixed()}°
           </Text>
         </View>

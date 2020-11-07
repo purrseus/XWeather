@@ -11,16 +11,9 @@
 import React, { FC } from 'react';
 import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 
-import TabNavigator from 'navigators/tabNavigator';
+import DrawerNavigator from 'navigators/drawerNavigator';
 import { ForecastProvider } from 'providers/forecastProvider';
-
-type StackParamsList = {
-  Tab: undefined;
-};
-
-const RootStack = createStackNavigator<StackParamsList>();
 
 const App: FC = () => {
   return (
@@ -28,9 +21,7 @@ const App: FC = () => {
       <>
         <StatusBar translucent backgroundColor="transparent" />
         <NavigationContainer>
-          <RootStack.Navigator headerMode="none">
-            <RootStack.Screen name="Tab" component={TabNavigator} />
-          </RootStack.Navigator>
+          <DrawerNavigator />
         </NavigationContainer>
       </>
     </ForecastProvider>
