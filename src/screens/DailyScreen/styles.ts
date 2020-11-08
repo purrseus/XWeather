@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     marginTop: 80,
   },
   title: {
-    fontSize: 25,
+    fontSize: 26,
     letterSpacing: 1,
     color: 'white',
     textAlign: 'center',
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   flatList: {
     paddingHorizontal: 15,
     marginTop: 20,
-    marginBottom: 103,
+    marginBottom: 100,
   },
 });
 

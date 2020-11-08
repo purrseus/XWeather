@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   sectionList: {
     marginTop: 90,
     paddingHorizontal: 15,
-    marginBottom: 70,
+    marginBottom: 65,
   },
   titleSection: {
     fontSize: 25,

@@ -10,6 +10,8 @@ const styles = StyleSheet.create({
       new Date().getHours() >= 6 && new Date().getHours() < 18
         ? 'black'
         : 'white',
+    textShadowColor: '#000',
+    textShadowRadius: 0.1,
   },
   container: {
     width: '100%',
@@ -18,7 +20,6 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     justifyContent: 'center',
     marginTop: 45,
-    marginBottom: 80,
   },
   name: {
     textAlign: 'center',

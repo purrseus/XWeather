@@ -3,7 +3,7 @@
  */
 
 import React, { FC } from 'react';
-import { Image, TouchableWithoutFeedback, View } from 'react-native';
+import { Image, Keyboard, TouchableWithoutFeedback, View } from 'react-native';
 import { DrawerActions, useNavigation } from '@react-navigation/native';
 import styles from './styles';
 
@@ -13,7 +13,10 @@ const MenuBtn: FC = () => {
   return (
     <View style={styles.container}>
       <TouchableWithoutFeedback
-        onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
+        onPress={() => {
+          navigation.dispatch(DrawerActions.toggleDrawer());
+          Keyboard.dismiss();
+        }}
       >
         <View style={styles.wrapper}>
           <Image

@@ -46,10 +46,11 @@ const CustomDrawerContent: FC<DrawerContentComponentProps<
           }}
           label="Search by city name"
           onPress={() => {
-            props.navigation.navigate('Hourly');
+            props.navigation.navigate('Search');
           }}
         />
       </DrawerContentScrollView>
+
       <DrawerItem
         style={styles.settings}
         icon={({ color, size }) => {
@@ -57,7 +58,7 @@ const CustomDrawerContent: FC<DrawerContentComponentProps<
         }}
         label="Settings"
         onPress={() => {
-          props.navigation.navigate('Hourly');
+          /*...*/
         }}
       />
     </View>

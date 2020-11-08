@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 10,
-    paddingTop: StatusBar.currentHeight || 0,
+    paddingTop: 10,
+    marginTop: StatusBar.currentHeight || 0,
   },
   wrapper: {
     padding: 10,

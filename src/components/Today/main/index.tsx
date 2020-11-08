@@ -5,22 +5,28 @@
 import React, { FC } from 'react';
 import { View, Text, Image } from 'react-native';
 import styles from './styles';
-import { ForecastInterface } from 'types/interface';
 import useBackgroundIcon from 'hooks/useBackgroundIcon';
 
-const Today: FC<ForecastInterface> = ({ list, city }) => {
+interface Props {
+  name: string;
+  country: string;
+  temp: string;
+  description: string;
+  feelsLike: string;
+}
+
+const Today: FC<Props> = props => {
+  const { name, country, temp, description, feelsLike } = props;
   const { icon } = useBackgroundIcon();
   return (
     <>
-      {!!list && (
+      {!!name && (
         <View style={styles.container}>
           <Text style={[styles.name, styles.color]}>
-            {city.name}, {city.country}
+            {name}, {country}
           </Text>
 
-          <Text style={[styles.temp, styles.color]}>
-            {list[1].main.temp.toFixed()}°C
-          </Text>
+          <Text style={[styles.temp, styles.color]}>{temp}°C</Text>
 
           <Image
             source={{
@@ -29,12 +35,10 @@ const Today: FC<ForecastInterface> = ({ list, city }) => {
             style={styles.image}
           />
 
-          <Text style={[styles.description, styles.color]}>
-            {list[1].weather[0].description}
-          </Text>
+          <Text style={[styles.description, styles.color]}>{description}</Text>
 
           <Text style={[styles.feelsLike, styles.color]}>
-            Feels like {list[1].main.feels_like.toFixed()}°
+            Feels like {feelsLike}°
           </Text>
         </View>
       )}

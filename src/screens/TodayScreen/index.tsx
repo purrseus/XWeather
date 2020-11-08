@@ -2,7 +2,7 @@
  * @format
  */
 
-import React, { FC, useContext, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import {
   ScrollView,
   RefreshControl,
@@ -12,18 +12,20 @@ import {
 import SplashScreen from 'react-native-splash-screen';
 
 import styles from './styles';
-import useBackgroundIcon from 'hooks/useBackgroundIcon';
 import useForecast, { HookReturn } from 'hooks/useForecast';
 
 import MenuBtn from 'components/MenuBtn';
 import Today from 'components/Today/main';
 import CurrentCondition from 'components/Today/currentCondition';
-import { ForecastContext } from 'providers/forecastProvider';
 
 const TodayScreen: FC = () => {
-  const { refreshing, netInfo, getWeatherForecast }: HookReturn = useForecast();
-  const { weatherForecast } = useContext(ForecastContext);
-  const { background } = useBackgroundIcon();
+  const {
+    background,
+    weatherForecast,
+    refreshing,
+    netInfo,
+    getWeatherForecast,
+  }: HookReturn = useForecast();
 
   useEffect(() => {
     getWeatherForecast();
@@ -42,35 +44,44 @@ const TodayScreen: FC = () => {
           />
         }
       >
-        <Today {...weatherForecast} />
         {!!weatherForecast.cod && (
-          <View style={styles.curConditions}>
-            <CurrentCondition
-              name="Humidity"
-              icon={require('assets/icons/common/humidity.png')}
-              index={`${weatherForecast.list[1].main.humidity}%`}
+          <>
+            <Today
+              name={weatherForecast.city.name}
+              country={weatherForecast.city.country}
+              temp={weatherForecast.list[1].main.temp.toFixed()}
+              description={weatherForecast.list[1].weather[0].description}
+              feelsLike={weatherForecast.list[1].main.feels_like.toFixed(2)}
             />
 
-            <CurrentCondition
-              name="Wind speed"
-              icon={require('assets/icons/common/wind.png')}
-              index={`${(weatherForecast.list[1].wind.speed * 3.6).toFixed(
-                1
-              )}km/h`}
-            />
+            <View style={styles.curConditions}>
+              <CurrentCondition
+                name="Humidity"
+                icon={require('assets/icons/common/humidity.png')}
+                index={`${weatherForecast.list[1].main.humidity}%`}
+              />
 
-            <CurrentCondition
-              name="Cloudiness"
-              icon={require('assets/icons/common/cloud.png')}
-              index={`${weatherForecast.list[1].clouds.all}%`}
-            />
+              <CurrentCondition
+                name="Wind speed"
+                icon={require('assets/icons/common/wind.png')}
+                index={`${(weatherForecast.list[1].wind.speed * 3.6).toFixed(
+                  1
+                )}km/h`}
+              />
 
-            <CurrentCondition
-              name="Pressure"
-              icon={require('assets/icons/common/pressure.png')}
-              index={`${weatherForecast.list[1].main.pressure}hPa`}
-            />
-          </View>
+              <CurrentCondition
+                name="Cloudiness"
+                icon={require('assets/icons/common/cloud.png')}
+                index={`${weatherForecast.list[1].clouds.all}%`}
+              />
+
+              <CurrentCondition
+                name="Pressure"
+                icon={require('assets/icons/common/pressure.png')}
+                index={`${weatherForecast.list[1].main.pressure}hPa`}
+              />
+            </View>
+          </>
         )}
       </ScrollView>
     </ImageBackground>

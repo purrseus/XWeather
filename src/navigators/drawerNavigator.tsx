@@ -7,9 +7,11 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import CustomDrawerContent from './CustomDrawerContent';
 import TabNavigator from 'navigators/tabNavigator';
+import SearchScreen from 'screens/SearchScreen';
 
 type DrawerParamsList = {
-  Home: undefined;
+  Tab: undefined;
+  Search: undefined;
 };
 
 const Drawer = createDrawerNavigator<DrawerParamsList>();
@@ -22,7 +24,8 @@ const DrawerNavigator: FC = () => {
       statusBarAnimation="slide"
       drawerContent={props => <CustomDrawerContent {...props} />}
     >
-      <Drawer.Screen name="Home" component={TabNavigator} />
+      <Drawer.Screen name="Tab" component={TabNavigator} />
+      <Drawer.Screen name="Search" component={SearchScreen} />
     </Drawer.Navigator>
   );
 };

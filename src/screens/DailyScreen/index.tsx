@@ -9,11 +9,14 @@ import styles from './styles';
 import useHandle, { HookReturn } from './handle';
 import Daily from 'components/Daily';
 import MenuBtn from 'components/MenuBtn';
-import useBackgroundIcon from 'hooks/useBackgroundIcon';
 
 const DailyScreen: FC = () => {
-  const { dailyWeather, netInfo, getDailyWeather }: HookReturn = useHandle();
-  const { background } = useBackgroundIcon();
+  const {
+    background,
+    dailyWeather,
+    netInfo,
+    getDailyWeather,
+  }: HookReturn = useHandle();
 
   useEffect(() => {
     getDailyWeather();

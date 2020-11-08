@@ -33,7 +33,7 @@ const Hourly = ({ item }: Props) => {
       />
       <Text style={styles.temp}>{item.main.temp.toFixed()}°C</Text>
       <Text style={styles.feelsLike}>
-        Feels like {item.main.feels_like.toFixed()}°
+        Feels like {item.main.feels_like.toFixed(2)}°
       </Text>
     </View>
   );

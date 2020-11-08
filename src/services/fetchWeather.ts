@@ -34,3 +34,16 @@ export const fetchDailyWeather = (latitude: number, longitude: number) => {
 
   return response;
 };
+
+export const fetchCityWeather = (name: string) => {
+  const response = axios.get(`${URL}/weather`, {
+    params: {
+      q: name,
+      units: 'metric',
+      lang: 'en',
+      appid: API_KEY,
+    },
+  });
+
+  return response;
+};

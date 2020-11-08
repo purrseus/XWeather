@@ -43,17 +43,16 @@ const TabNavigator: FC = () => {
   const tabBarOptions: BottomTabBarOptions = {
     labelStyle: {
       width: 100,
-      fontSize: 14,
+      fontSize: 13,
       marginBottom: 6,
-      fontWeight: 'bold',
-      marginTop: -6,
+      marginTop: -10,
     },
     style: {
       position: 'absolute',
       borderTopWidth: 0,
       borderTopLeftRadius: 20,
       borderTopRightRadius: 20,
-      height: 70,
+      height: 65,
       backgroundColor: '#292b36',
     },
     activeTintColor: 'white',
@@ -106,9 +105,9 @@ const TabNavigator: FC = () => {
 };
 
 const styles = StyleSheet.create({
-  today: { width: 32, height: 32 },
-  hourly: { width: 26, height: 26 },
-  daily: { width: 25, height: 25 },
+  today: { width: 26, height: 26 },
+  hourly: { width: 23, height: 23 },
+  daily: { width: 22, height: 22 },
 });
 
 export default TabNavigator;

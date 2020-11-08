@@ -3,12 +3,13 @@
  */
 
 import { useCallback, useState } from 'react';
+import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NetInfoState, useNetInfo } from '@react-native-community/netinfo';
 
-import { fetchDailyWeather } from 'api/fetchWeather';
+import { fetchDailyWeather } from 'services/fetchWeather';
 import { DailyWeatherInterface } from 'types/interface';
-import { Alert } from 'react-native';
+import useBackgroundIcon from 'hooks/useBackgroundIcon';
 
 interface Position {
   longitude: number;
@@ -22,6 +23,7 @@ interface Response {
 }
 
 export interface HookReturn {
+  background: any;
   dailyWeather: DailyWeatherInterface[];
   netInfo: NetInfoState;
   getDailyWeather: () => void;
@@ -34,6 +36,7 @@ const useHandle: CustomHook = () => {
     DailyWeatherInterface[] | []
   >([]);
   const netInfo = useNetInfo();
+  const { background } = useBackgroundIcon();
 
   const getDailyWeather = useCallback(() => {
     if (netInfo.isConnected) {
@@ -46,18 +49,22 @@ const useHandle: CustomHook = () => {
           Alert.alert('Turn on device location and try again.');
         } else {
           const { latitude, longitude }: Position = JSON.parse(value);
-          const { data }: Response = await fetchDailyWeather(
-            latitude,
-            longitude
-          );
-          setDailyWeather([...data.daily]);
-          // Notify no GPS connection*
+          try {
+            const { data }: Response = await fetchDailyWeather(
+              latitude,
+              longitude
+            );
+            setDailyWeather([...data.daily]);
+            // Notify no GPS connection*
+          } catch (error) {
+            console.log(error);
+          }
         }
       })();
     }
   }, [netInfo.isConnected]);
 
-  return { dailyWeather, netInfo, getDailyWeather };
+  return { background, dailyWeather, netInfo, getDailyWeather };
 };
 
 export default useHandle;
