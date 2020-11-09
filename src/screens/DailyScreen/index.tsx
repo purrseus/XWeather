@@ -30,17 +30,17 @@ const DailyScreen: FC = () => {
     >
       <MenuBtn />
 
-      <View style={styles.container}>
-        <Text style={styles.title}>8 Days</Text>
-        {!!dailyWeather.length && (
+      {!!dailyWeather.length && netInfo.isConnected && (
+        <View style={styles.container}>
+          <Text style={styles.title}>8 Days</Text>
           <FlatList
             style={styles.flatList}
             data={dailyWeather}
             renderItem={({ item }) => <Daily data={item} />}
             keyExtractor={(item, index) => '' + index}
           />
-        )}
-      </View>
+        </View>
+      )}
     </ImageBackground>
   );
 };

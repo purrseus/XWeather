@@ -43,10 +43,7 @@ const useHandle: CustomHook = () => {
       (async () => {
         const value: string | null = await AsyncStorage.getItem('@location');
         if (!value) {
-          /** ??????????????????
-           * navigate to search by city name feature or alert and show error message
-           */
-          Alert.alert('Turn on device location and try again.');
+          Alert.alert('', 'Turn on device location and try again.');
         } else {
           const { latitude, longitude }: Position = JSON.parse(value);
           try {
@@ -55,7 +52,6 @@ const useHandle: CustomHook = () => {
               longitude
             );
             setDailyWeather([...data.daily]);
-            // Notify no GPS connection*
           } catch (error) {
             console.log(error);
           }

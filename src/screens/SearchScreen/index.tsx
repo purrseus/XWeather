@@ -21,12 +21,7 @@ import Today from 'components/Today/main';
 import CurrentCondition from 'components/Today/currentCondition';
 
 const SearchScreen: FC = () => {
-  const {
-    background,
-    cityWeather,
-    netInfo,
-    getCityWeather,
-  }: HookReturn = useHandle();
+  const { background, cityWeather, getCityWeather }: HookReturn = useHandle();
 
   return (
     <ImageBackground source={background} style={styles.background}>

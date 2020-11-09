@@ -8,6 +8,7 @@ import {
   RefreshControl,
   ImageBackground,
   View,
+  Text,
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -44,43 +45,51 @@ const TodayScreen: FC = () => {
           />
         }
       >
-        {!!weatherForecast.cod && (
+        {!netInfo.isConnected ? (
+          <View>
+            <Text style={styles.notFound}>No Internet Connection</Text>
+          </View>
+        ) : (
           <>
-            <Today
-              name={weatherForecast.city.name}
-              country={weatherForecast.city.country}
-              temp={weatherForecast.list[1].main.temp.toFixed()}
-              description={weatherForecast.list[1].weather[0].description}
-              feelsLike={weatherForecast.list[1].main.feels_like.toFixed(2)}
-            />
+            {!!weatherForecast.cod && (
+              <>
+                <Today
+                  name={weatherForecast.city.name}
+                  country={weatherForecast.city.country}
+                  temp={weatherForecast.list[1].main.temp.toFixed()}
+                  description={weatherForecast.list[1].weather[0].description}
+                  feelsLike={weatherForecast.list[1].main.feels_like.toFixed(2)}
+                />
 
-            <View style={styles.curConditions}>
-              <CurrentCondition
-                name="Humidity"
-                icon={require('assets/icons/common/humidity.png')}
-                index={`${weatherForecast.list[1].main.humidity}%`}
-              />
+                <View style={styles.curConditions}>
+                  <CurrentCondition
+                    name="Humidity"
+                    icon={require('assets/icons/common/humidity.png')}
+                    index={`${weatherForecast.list[1].main.humidity}%`}
+                  />
 
-              <CurrentCondition
-                name="Wind speed"
-                icon={require('assets/icons/common/wind.png')}
-                index={`${(weatherForecast.list[1].wind.speed * 3.6).toFixed(
-                  1
-                )}km/h`}
-              />
+                  <CurrentCondition
+                    name="Wind speed"
+                    icon={require('assets/icons/common/wind.png')}
+                    index={`${(
+                      weatherForecast.list[1].wind.speed * 3.6
+                    ).toFixed(1)}km/h`}
+                  />
 
-              <CurrentCondition
-                name="Cloudiness"
-                icon={require('assets/icons/common/cloud.png')}
-                index={`${weatherForecast.list[1].clouds.all}%`}
-              />
+                  <CurrentCondition
+                    name="Cloudiness"
+                    icon={require('assets/icons/common/cloud.png')}
+                    index={`${weatherForecast.list[1].clouds.all}%`}
+                  />
 
-              <CurrentCondition
-                name="Pressure"
-                icon={require('assets/icons/common/pressure.png')}
-                index={`${weatherForecast.list[1].main.pressure}hPa`}
-              />
-            </View>
+                  <CurrentCondition
+                    name="Pressure"
+                    icon={require('assets/icons/common/pressure.png')}
+                    index={`${weatherForecast.list[1].main.pressure}hPa`}
+                  />
+                </View>
+              </>
+            )}
           </>
         )}
       </ScrollView>

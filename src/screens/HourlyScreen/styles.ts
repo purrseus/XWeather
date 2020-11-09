@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
     height: '100%',
     resizeMode: 'cover',
   },
+  container: {
+    marginTop: 80,
+  },
   sectionList: {
     marginTop: 90,
     paddingHorizontal: 15,

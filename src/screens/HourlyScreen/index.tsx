@@ -36,7 +36,7 @@ const HourlyScreen: FC = () => {
     >
       <MenuBtn />
 
-      {!!data && (
+      {!!data && netInfo.isConnected && (
         <SectionList
           style={styles.sectionList}
           refreshControl={

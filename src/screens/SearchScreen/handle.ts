@@ -11,7 +11,6 @@ import { CityWeatherInterface } from 'types/interface';
 export interface HookReturn {
   background: any;
   cityWeather: string | CityWeatherInterface;
-  netInfo: NetInfoState;
   getCityWeather: (name: string) => Promise<void>;
 }
 
@@ -36,14 +35,13 @@ const useHandle: CustomHook = () => {
         setCityWeather({ ...data });
       } catch (error) {
         setCityWeather('No results found.');
-        // alert...............
       }
     } else {
       setCityWeather('No Internet Connection');
     }
   };
 
-  return { background, cityWeather, netInfo, getCityWeather };
+  return { background, cityWeather, getCityWeather };
 };
 
 export default useHandle;

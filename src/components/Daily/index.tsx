@@ -8,7 +8,6 @@ import moment from 'moment';
 
 import { DailyWeatherInterface } from 'types/interface';
 import styles from './styles';
-import { template } from '@babel/core';
 
 interface Props {
   data: DailyWeatherInterface;

@@ -2,7 +2,7 @@
  * @format
  */
 
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
   background: {
@@ -10,7 +10,14 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   scroll: {
-    marginTop: 90,
+    marginTop: 80,
+  },
+  notFound: {
+    width: Dimensions.get('window').width,
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 20,
   },
   curConditions: {
     flexDirection: 'row',

@@ -4,6 +4,7 @@
 
 import { Alert } from 'react-native';
 import { useCallback, useContext, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { NetInfoState, useNetInfo } from '@react-native-community/netinfo';
 import Geolocation from '@react-native-community/geolocation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -34,6 +35,7 @@ type CustomHook = () => HookReturn;
 
 const useForecast: CustomHook = () => {
   const [refreshing, setRefreshing] = useState<boolean>(false);
+  const navigation = useNavigation();
   const netInfo: NetInfoState = useNetInfo();
   const { weatherForecast, setWeatherForecast } = useContext(ForecastContext);
   const { background }: { background: any } = useBackgroundIcon();
@@ -77,10 +79,13 @@ const useForecast: CustomHook = () => {
             );
             if (!value) {
               setRefreshing(false);
-              /** ??????????????????
-               * navigate to search by city name feature or alert and show error message
-               */
-              Alert.alert(message, 'Turn on device location and try again.');
+              Alert.alert(message, 'Turn on device location and try again.', [
+                {
+                  text: 'Find location',
+                  onPress: () => navigation.navigate('Search'),
+                },
+                {},
+              ]);
             } else {
               const location: Position = JSON.parse(value);
               try {
@@ -90,7 +95,6 @@ const useForecast: CustomHook = () => {
                 );
                 setWeatherForecast({ ...data });
                 setRefreshing(false);
-                // Notify no GPS connection*
               } catch (error) {
                 console.log(error);
               }
@@ -102,7 +106,7 @@ const useForecast: CustomHook = () => {
     } else {
       setRefreshing(false);
     }
-  }, [setWeatherForecast, netInfo.isConnected]);
+  }, [setWeatherForecast, netInfo.isConnected, navigation]);
 
   return {
     background,

@@ -10,8 +10,11 @@ const styles = StyleSheet.create({
       new Date().getHours() >= 6 && new Date().getHours() < 18
         ? 'black'
         : 'white',
-    textShadowColor: '#000',
-    textShadowRadius: 0.1,
+    textShadowColor:
+      new Date().getHours() >= 6 && new Date().getHours() < 18
+        ? 'transparent'
+        : '#000',
+    textShadowRadius: 2,
   },
   container: {
     width: '100%',
