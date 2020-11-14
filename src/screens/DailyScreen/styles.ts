@@ -10,18 +10,11 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   container: {
-    marginTop: 80,
-  },
-  title: {
-    fontSize: 26,
-    letterSpacing: 1,
-    color: 'white',
-    textAlign: 'center',
+    paddingTop: 100,
+    backgroundColor: '#0003',
   },
   flatList: {
-    paddingHorizontal: 15,
-    marginTop: 20,
-    marginBottom: 100,
+    paddingHorizontal: 5,
   },
 });
 

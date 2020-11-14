@@ -3,47 +3,37 @@
  */
 
 import React, { FC } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text } from 'react-native';
+import moment from 'moment';
+
 import styles from './styles';
-import useBackgroundIcon from 'hooks/useBackgroundIcon';
 
 interface Props {
-  name: string;
-  country: string;
   temp: string;
   description: string;
   feelsLike: string;
 }
 
-const Today: FC<Props> = props => {
-  const { name, country, temp, description, feelsLike } = props;
-  const { icon } = useBackgroundIcon();
+const Main: FC<Props> = props => {
+  const { temp, description, feelsLike } = props;
+
   return (
-    <>
-      {!!name && (
-        <View style={styles.container}>
-          <Text style={[styles.name, styles.color]}>
-            {name}, {country}
-          </Text>
+    <View style={styles.container}>
+      <Text style={styles.today}>Today</Text>
+      <Text style={styles.date}>
+        {moment(new Date()).format('ddd, DD MMM')}
+      </Text>
 
-          <Text style={[styles.temp, styles.color]}>{temp}°C</Text>
+      <Text style={styles.description}>{description}</Text>
 
-          <Image
-            source={{
-              uri: `http://openweathermap.org/img/wn/${icon}@4x.png`,
-            }}
-            style={styles.image}
-          />
+      <View style={styles.tempWrapper}>
+        <Text style={styles.temp}>{temp}</Text>
+        <Text style={styles.celsius}>°C</Text>
+      </View>
 
-          <Text style={[styles.description, styles.color]}>{description}</Text>
-
-          <Text style={[styles.feelsLike, styles.color]}>
-            Feels like {feelsLike}°
-          </Text>
-        </View>
-      )}
-    </>
+      <Text style={styles.feelsLike}>Feels like {feelsLike}°</Text>
+    </View>
   );
 };
 
-export default Today;
+export default Main;

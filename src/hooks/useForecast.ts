@@ -9,24 +9,28 @@ import { NetInfoState, useNetInfo } from '@react-native-community/netinfo';
 import Geolocation from '@react-native-community/geolocation';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { ForecastInterface } from 'types/interface';
-import { fetchWeather } from 'services/fetchWeather';
+import { ForecastInterface, OneCallInterface } from 'types/interface';
+import { fetchWeather, fetchWeatherForecast } from 'services/fetchWeather';
 import { ForecastContext } from 'providers/forecastProvider';
-import useBackgroundIcon from './useBackgroundIcon';
+import useBackground from './useBackground';
 
 interface Position {
   longitude: number;
   latitude: number;
 }
-
 interface Response {
+  data: OneCallInterface;
+}
+
+interface Res {
   data: ForecastInterface;
 }
 
 export interface HookReturn {
   background: any;
   refreshing: boolean;
-  weatherForecast: ForecastInterface;
+  city: string;
+  weatherForecast: OneCallInterface;
   netInfo: NetInfoState;
   getWeatherForecast: () => void;
 }
@@ -34,18 +38,23 @@ export interface HookReturn {
 type CustomHook = () => HookReturn;
 
 const useForecast: CustomHook = () => {
+  const { weatherForecast, setWeatherForecast } = useContext(ForecastContext);
   const [refreshing, setRefreshing] = useState<boolean>(false);
+  const [city, setCity] = useState<string>('');
+
   const navigation = useNavigation();
   const netInfo: NetInfoState = useNetInfo();
-  const { weatherForecast, setWeatherForecast } = useContext(ForecastContext);
-  const { background }: { background: any } = useBackgroundIcon();
+
+  const { background }: { background: any } = useBackground();
 
   const getWeatherForecast: () => void = useCallback(() => {
     setRefreshing(true);
+
     if (netInfo.isConnected) {
       Geolocation.getCurrentPosition(
         ({ coords }) => {
           const { latitude, longitude }: Position = coords;
+
           (async () => {
             const value: string | null = await AsyncStorage.getItem(
               '@location'
@@ -56,10 +65,15 @@ const useForecast: CustomHook = () => {
                 JSON.stringify({ latitude, longitude })
               );
             }
+
             try {
-              const { data }: Response = await fetchWeather(
+              const { data }: Response = await fetchWeatherForecast(
                 latitude,
                 longitude
+              );
+              const response: Res = await fetchWeather(latitude, longitude);
+              setCity(
+                `${response.data.city.name}, ${response.data.city.country}`
               );
               setWeatherForecast({ ...data });
               await AsyncStorage.mergeItem(
@@ -72,6 +86,7 @@ const useForecast: CustomHook = () => {
             }
           })();
         },
+
         ({ message }) => {
           (async () => {
             const value: string | null = await AsyncStorage.getItem(
@@ -88,10 +103,18 @@ const useForecast: CustomHook = () => {
               ]);
             } else {
               const location: Position = JSON.parse(value);
+
               try {
-                const { data }: Response = await fetchWeather(
+                const { data }: Response = await fetchWeatherForecast(
                   location.latitude,
                   location.longitude
+                );
+                const response: Res = await fetchWeather(
+                  location.latitude,
+                  location.longitude
+                );
+                setCity(
+                  `${response.data.city.name}, ${response.data.city.country}`
                 );
                 setWeatherForecast({ ...data });
                 setRefreshing(false);
@@ -110,6 +133,7 @@ const useForecast: CustomHook = () => {
 
   return {
     background,
+    city,
     weatherForecast,
     refreshing,
     netInfo,

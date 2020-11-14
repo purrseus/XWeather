@@ -6,24 +6,25 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
     borderRadius: 15,
     padding: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#DDD5',
   },
   content: {
     justifyContent: 'center',
   },
   date: {
-    width: 150,
+    fontFamily: '',
     fontSize: 16,
+    color: 'white',
   },
   description: {
     fontSize: 15,
     textTransform: 'capitalize',
-    color: '#888',
+    color: '#DDDA',
   },
   forecast: {
     flexDirection: 'row',
@@ -38,12 +39,13 @@ const styles = StyleSheet.create({
     width: 35,
     fontSize: 16,
     textAlign: 'right',
+    color: 'white',
   },
   tempMin: {
     width: 35,
     fontSize: 14,
     textAlign: 'right',
-    color: '#888',
+    color: '#DDDA',
   },
 });
 

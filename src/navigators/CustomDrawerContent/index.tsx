@@ -23,26 +23,26 @@ const CustomDrawerContent: FC<DrawerContentComponentProps<
         <View style={styles.logo}>
           <Image
             source={require('assets/icons/logo.png')}
-            style={styles.logoImage}
+            style={styles.logoIcon}
           />
           <Text style={styles.content}>XWeather</Text>
         </View>
 
         <DrawerItem
+          labelStyle={styles.font}
           icon={({ color, size }) => {
-            return <Icon color={color} size={size} name="crosshairs-gps" />;
+            return <Icon color={color} size={size} name="cloud-outline" />;
           }}
           label="Home"
           onPress={() => {
-            props.navigation.navigate('Today');
+            props.navigation.navigate('Weather');
           }}
         />
 
         <DrawerItem
+          labelStyle={styles.font}
           icon={({ color, size }) => {
-            return (
-              <Icon color={color} size={size} name="city-variant-outline" />
-            );
+            return <Icon color={color} size={size} name="map-marker-outline" />;
           }}
           label="Search by city name"
           onPress={() => {
@@ -52,6 +52,7 @@ const CustomDrawerContent: FC<DrawerContentComponentProps<
       </DrawerContentScrollView>
 
       <DrawerItem
+        labelStyle={styles.font}
         style={styles.settings}
         icon={({ color, size }) => {
           return <Icon color={color} size={size} name="cog" />;

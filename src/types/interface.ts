@@ -21,7 +21,7 @@ interface Main {
   temp_kf: number;
 }
 
-export interface HourlyInterface {
+export interface ThreeHoursInterface {
   dt: string;
   main: Main;
   weather: Weather[];
@@ -58,7 +58,7 @@ export interface ForecastInterface {
   cod: string;
   message: number;
   cnt: number;
-  list: HourlyInterface[];
+  list: ThreeHoursInterface[];
   city: City;
 }
 ///////////////////////////////////////
@@ -94,6 +94,32 @@ export interface DailyWeatherInterface {
   pop: number;
   rain?: number;
   uvi: number;
+}
+
+export interface HourlyInterface {
+  dt: number;
+  temp: number;
+  feels_like: number;
+  pressure: number;
+  humidity: number;
+  dew_point: number;
+  clouds: number;
+  visibility: number;
+  wind_speed: number;
+  wind_deg: number;
+  weather: Weather[];
+  rain?: {
+    '1h': number;
+  };
+}
+
+export interface OneCallInterface {
+  lat: number;
+  lon: number;
+  timezone: string;
+  timezone_offset: number;
+  hourly: HourlyInterface[];
+  daily: DailyWeatherInterface[];
 }
 //////////////////////
 export interface CityWeatherInterface {

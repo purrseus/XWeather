@@ -20,12 +20,12 @@ export const fetchWeather = (latitude: number, longitude: number) => {
   return response;
 };
 
-export const fetchDailyWeather = (latitude: number, longitude: number) => {
+export const fetchWeatherForecast = (latitude: number, longitude: number) => {
   const response = axios.get(`${URL}/onecall`, {
     params: {
       lat: latitude,
       lon: longitude,
-      exclude: 'current,minutely,hourly,alert',
+      exclude: 'current,minutely,alerts',
       units: 'metric',
       lang: 'en',
       appid: API_KEY,

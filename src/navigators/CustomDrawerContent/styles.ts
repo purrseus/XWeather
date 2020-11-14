@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
   },
-  logoImage: {
+  logoIcon: {
     width: 50,
     height: 50,
   },
@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: '700',
     marginLeft: 10,
+  },
+  font: {
+    fontWeight: 'bold',
   },
   settings: {
     marginBottom: 20,

@@ -5,52 +5,59 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  color: {
-    color:
-      new Date().getHours() >= 6 && new Date().getHours() < 18
-        ? 'black'
-        : 'white',
-    textShadowColor:
-      new Date().getHours() >= 6 && new Date().getHours() < 18
-        ? 'transparent'
-        : '#000',
-    textShadowRadius: 2,
-  },
   container: {
-    width: '100%',
-    height: '100%',
-    flex: 1,
-    alignItems: 'stretch',
-    justifyContent: 'center',
-    marginTop: 45,
+    marginVertical: 5,
+    alignItems: 'center',
   },
-  name: {
+  today: {
+    color: 'white',
+    fontSize: 35,
+    fontFamily: '',
     textAlign: 'center',
-    fontSize: 25,
     fontWeight: 'bold',
-  },
-  temp: {
-    textAlign: 'center',
-    fontSize: 55,
-    marginTop: 20,
     letterSpacing: 1,
   },
-  image: {
-    width: 120,
-    height: 120,
-    alignSelf: 'center',
+  date: {
+    fontSize: 13,
+    fontFamily: '',
+    textAlign: 'center',
+    color: '#DDDA',
+    fontWeight: 'bold',
+    marginBottom: 10,
   },
   description: {
-    textAlign: 'center',
+    color: 'white',
     textTransform: 'capitalize',
-    fontSize: 22,
-    color: '#000',
+    fontFamily: '',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  tempWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 10,
+  },
+  temp: {
+    color: 'white',
+    fontSize: 60,
+    fontFamily: '',
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  celsius: {
+    color: 'white',
+    fontFamily: '',
+    textAlign: 'center',
+    marginTop: 15,
+    fontSize: 20,
   },
   feelsLike: {
+    fontFamily: '',
     textAlign: 'center',
-    marginTop: 10,
-    fontWeight: '700',
-    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#DDDC',
   },
 });
 

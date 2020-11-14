@@ -9,13 +9,18 @@ const styles = StyleSheet.create({
     height: Dimensions.get('screen').height,
     resizeMode: 'cover',
   },
+  overlay: {
+    height: Dimensions.get('screen').height,
+    backgroundColor: '#0003',
+  },
   wrapperInput: {
+    position: 'absolute',
     flexDirection: 'row',
     marginRight: 20,
     marginLeft: 70,
-    marginTop: StatusBar.currentHeight ? StatusBar.currentHeight + 10 : 0,
-    backgroundColor: '#FFFA',
-    borderRadius: 8,
+    marginTop: StatusBar.currentHeight ? StatusBar.currentHeight + 10 : 10,
+    backgroundColor: '#FFF',
+    borderRadius: 25,
     alignItems: 'center',
     paddingLeft: 10,
   },
@@ -27,6 +32,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    height: Dimensions.get('screen').height,
+    justifyContent: 'space-around',
   },
   curConditions: {
     flexDirection: 'row',
