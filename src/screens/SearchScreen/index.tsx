@@ -32,67 +32,65 @@ const SearchScreen: FC = () => {
     >
       <View style={styles.overlay}>
         <MenuBtn />
-        <ScrollView>
-          <View style={styles.wrapperInput}>
-            <Icon size={25} name="magnify" />
-            <TextInput
-              style={styles.textInput}
-              placeholder="Find location"
-              placeholderTextColor="#666"
-              selectionColor="#000"
-              onSubmitEditing={event => {
-                if (event.nativeEvent.text.length > 1) {
-                  getCityWeather(event.nativeEvent.text);
-                }
-              }}
-            />
-          </View>
+        <View style={styles.wrapperInput}>
+          <Icon size={25} name="magnify" />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Find location"
+            placeholderTextColor="#666"
+            selectionColor="#000"
+            onSubmitEditing={event => {
+              if (event.nativeEvent.text.length > 1) {
+                getCityWeather(event.nativeEvent.text);
+              }
+            }}
+          />
+        </View>
 
-          {typeof cityWeather !== 'string' ? (
-            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-              <View style={styles.container}>
-                <Today
-                  name={cityWeather.name}
-                  country={cityWeather.sys.country}
-                  temp={cityWeather.main.temp.toFixed()}
-                  description={cityWeather.weather[0].description}
-                  feelsLike={cityWeather.main.feels_like.toFixed(1)}
-                  icon={cityWeather.weather[0].icon}
+        {typeof cityWeather !== 'string' ? (
+          <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <ScrollView style={styles.container}>
+              <Today
+                name={cityWeather.name}
+                country={cityWeather.sys.country}
+                temp={cityWeather.main.temp.toFixed()}
+                description={cityWeather.weather[0].description}
+                feelsLike={cityWeather.main.feels_like.toFixed(1)}
+                icon={cityWeather.weather[0].icon}
+              />
+
+              <View style={styles.curConditions}>
+                <CurrentCondition
+                  name="Humidity"
+                  icon={'water-percent'}
+                  index={`${cityWeather.main.humidity}%`}
                 />
 
-                <View style={styles.curConditions}>
-                  <CurrentCondition
-                    name="Humidity"
-                    icon={'water-percent'}
-                    index={`${cityWeather.main.humidity}%`}
-                  />
+                <CurrentCondition
+                  name="Wind speed"
+                  icon={'weather-windy'}
+                  index={`${(cityWeather.wind.speed * 3.6).toFixed(1)} km/h`}
+                />
 
-                  <CurrentCondition
-                    name="Wind speed"
-                    icon={'weather-windy'}
-                    index={`${(cityWeather.wind.speed * 3.6).toFixed(1)} km/h`}
-                  />
+                <CurrentCondition
+                  name="Cloudiness"
+                  icon={'weather-cloudy'}
+                  index={`${cityWeather.clouds.all}%`}
+                />
 
-                  <CurrentCondition
-                    name="Cloudiness"
-                    icon={'weather-cloudy'}
-                    index={`${cityWeather.clouds.all}%`}
-                  />
-
-                  <CurrentCondition
-                    name="Pressure"
-                    icon={'speedometer-slow'}
-                    index={`${cityWeather.main.pressure} hPa`}
-                  />
-                </View>
+                <CurrentCondition
+                  name="Pressure"
+                  icon={'speedometer-slow'}
+                  index={`${cityWeather.main.pressure} hPa`}
+                />
               </View>
-            </TouchableWithoutFeedback>
-          ) : (
-            <View style={styles.container}>
-              <Text style={styles.notFound}>{cityWeather}</Text>
-            </View>
-          )}
-        </ScrollView>
+            </ScrollView>
+          </TouchableWithoutFeedback>
+        ) : (
+          <View style={styles.container}>
+            <Text style={styles.notFound}>{cityWeather}</Text>
+          </View>
+        )}
       </View>
     </ImageBackground>
   );

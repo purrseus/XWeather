@@ -30,17 +30,14 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   container: {
-    flex: 1,
-    alignItems: 'center',
-    height: Dimensions.get('screen').height,
-    justifyContent: 'space-around',
+    marginTop: 100,
   },
   curConditions: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 80,
+    marginTop: 50,
   },
   notFound: {
     width: Dimensions.get('window').width,
