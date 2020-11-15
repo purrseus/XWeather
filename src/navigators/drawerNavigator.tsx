@@ -21,8 +21,6 @@ const DrawerNavigator: FC = () => {
     <Drawer.Navigator
       keyboardDismissMode="none"
       drawerType="slide"
-      hideStatusBar={true}
-      statusBarAnimation="slide"
       drawerContent={props => <CustomDrawerContent {...props} />}
     >
       <Drawer.Screen name="Weather" component={TodayScreen} />

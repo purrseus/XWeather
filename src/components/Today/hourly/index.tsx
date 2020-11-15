@@ -17,10 +17,11 @@ const Hourly: FC<Props> = ({ data }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.time}>
-        {moment(new Date(dt * 1000)).hours() === 0
+        {new Date(dt * 1000).getHours() === 0
           ? moment(new Date(dt * 1000)).format('DD/MM')
-          : new Date(dt * 1000).getHours() !== new Date().getHours()
-          ? moment(new Date(dt * 1000)).format('h A')
+          : moment(new Date(dt * 1000)).format('DD-HH') !==
+            moment(new Date()).format('DD-HH')
+          ? moment(new Date(dt * 1000)).format('HH:mm')
           : 'Now'}
       </Text>
       <Image
@@ -32,7 +33,7 @@ const Hourly: FC<Props> = ({ data }) => {
 
       <Text style={styles.temp}>{temp.toFixed()}°</Text>
       <Text style={styles.rain}>
-        {rain ? `${rain['1h'].toFixed(1)}mm` : '0mm'}
+        {rain ? `${rain['1h'].toFixed(1)} mm` : '0 mm'}
       </Text>
     </View>
   );

@@ -2,7 +2,7 @@
  * @format
  */
 
-import { StyleSheet, StatusBar } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 20,
-    marginTop: StatusBar.currentHeight || 0,
+    marginTop: 10,
     paddingBottom: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
